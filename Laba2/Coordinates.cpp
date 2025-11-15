@@ -1,0 +1,48 @@
+#include "Coordinates.hpp"
+#include <iostream>
+#include <cmath>
+#include <stdexcept>
+
+using namespace std;
+
+Coordinates::Coordinates(double latitude, double longitude)
+    : latitude(latitude), longitude(longitude) {
+    
+    if (!validateLatitude(latitude)) {
+        throw invalid_argument("Invalid latitude value");
+    }
+    if (!validateLongitude(longitude)) {
+        throw invalid_argument("Invalid longitude value");
+    }
+}
+
+double Coordinates::getLatitude() const { 
+    return latitude; 
+}
+
+double Coordinates::getLongitude() const { 
+    return longitude; 
+}
+
+double Coordinates::calculateDistance(const Coordinates& other) const {
+    // Упрощенная формула расчета расстояния
+    double latDiff = latitude - other.latitude;
+    double lonDiff = longitude - other.longitude;
+    return sqrt(latDiff * latDiff + lonDiff * lonDiff) * 111.0; // км за градус
+}
+
+bool Coordinates::isValid() const {
+    return validateLatitude(latitude) && validateLongitude(longitude);
+}
+
+void Coordinates::display() const {
+    cout << "Coordinates: " << latitude << "°N, " << longitude << "°E" << endl;
+}
+
+bool Coordinates::validateLatitude(double latitude) const {
+    return latitude >= -90.0 && latitude <= 90.0;
+}
+
+bool Coordinates::validateLongitude(double longitude) const {
+    return longitude >= -180.0 && longitude <= 180.0;
+}

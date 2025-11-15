@@ -1,0 +1,12 @@
+[
+    {
+        "name": "Default",
+        "compilers": {
+            "C": "/usr/bin/gcc",
+            "C++": "/usr/bin/g++"
+        },
+        "environmentVariables": {
+            "PKG_CONFIG_PATH": "/usr/local/lib/pkgconfig"
+        }
+    }
+]
