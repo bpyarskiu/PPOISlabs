@@ -8,8 +8,8 @@
 
 CantorSet::CantorSet() {}
 
-CantorSet::CantorSet(const MySet<std::string>& elements,
-                     const MySet<std::unique_ptr<CantorSet>>& subsets)
+CantorSet::CantorSet(const SimpleSet<std::string>& elements,
+                     const SimpleSet<std::unique_ptr<CantorSet>>& subsets)
     : elements(elements), subsets(subsets) {}
 
 CantorSet::CantorSet(const std::vector<std::string>& elements_vec) {
@@ -63,8 +63,8 @@ CantorSet& CantorSet::operator=(const CantorSet& other) {
 
 // ============ ПОСТРОЕНИЕ КАНТОРОВА МНОЖЕСТВА ============
 
-CantorSet CantorSet::createCompleteCantorSet(const MySet<std::string>& elements,
-                                           const MySet<std::unique_ptr<CantorSet>>& subsets) {
+CantorSet CantorSet::createCompleteCantorSet(const SimpleSet<std::string>& elements,
+                                           const SimpleSet<std::unique_ptr<CantorSet>>& subsets) {
     CantorSet result;
     result.buildCompleteCantorSet(elements, subsets);
     return result;
@@ -74,8 +74,8 @@ CantorSet CantorSet::createCompleteCantorSet(const CantorSet& set) {
     return createCompleteCantorSet(set.elements, set.subsets);
 }
 
-void CantorSet::buildCompleteCantorSet(const MySet<std::string>& all_elements,
-                                      const MySet<std::unique_ptr<CantorSet>>& all_subsets) {
+void CantorSet::buildCompleteCantorSet(const SimpleSet<std::string>& all_elements,
+                                      const SimpleSet<std::unique_ptr<CantorSet>>& all_subsets) {
     // Собираем все элементы в один отсортированный список
     std::vector<std::string> sorted_elements;
     all_elements.forEach([&](const std::string& elem) {
@@ -117,7 +117,7 @@ void CantorSet::buildCompleteCantorSet(const MySet<std::string>& all_elements,
     
     // Рекурсивно строим следующий уровень, если есть что строить
     if (next_level_elements.size() > 1) {
-        MySet<std::string> next_elements;
+        SimpleSet<std::string> next_elements;
         for (const auto& elem : next_level_elements) {
             next_elements.insert(elem);
         }

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "MySet.hpp"
+#include "SimpleSet.hpp"
 #include <string>
 #include <memory>
 #include <iostream>
@@ -18,16 +18,16 @@
  */
 class CantorSet {
 private:
-    MySet<std::string> elements;  ///< Простые элементы (атомы) множества
-    MySet<std::unique_ptr<CantorSet>> subsets;  ///< Подмножества множества
+    SimpleSet<std::string> elements;  ///< Простые элементы (атомы) множества
+    SimpleSet<std::unique_ptr<CantorSet>> subsets;  ///< Подмножества множества
     
     /**
      * @brief Рекурсивно строит полное канторово множество
      * @param all_elements Множество всех доступных элементов
      * @param all_subsets Множество всех доступных подмножеств
      */
-    void buildCompleteCantorSet(const MySet<std::string>& all_elements,
-                               const MySet<std::unique_ptr<CantorSet>>& all_subsets);
+    void buildCompleteCantorSet(const SimpleSet<std::string>& all_elements,
+                               const SimpleSet<std::unique_ptr<CantorSet>>& all_subsets);
     
     /**
      * @brief Возвращает отсортированные элементы множества
@@ -48,8 +48,8 @@ public:
      * @param elements Множество строк-элементов
      * @param subsets Множество подмножеств (по умолчанию пустое)
      */
-    CantorSet(const MySet<std::string>& elements, 
-              const MySet<std::unique_ptr<CantorSet>>& subsets = {});
+    CantorSet(const SimpleSet<std::string>& elements, 
+              const SimpleSet<std::unique_ptr<CantorSet>>& subsets = {});
     
     /**
      * @brief Конструктор из вектора элементов
@@ -99,8 +99,8 @@ public:
      * @param subsets Множество подмножеств (по умолчанию пустое)
      * @return Полное канторово множество
      */
-    static CantorSet createCompleteCantorSet(const MySet<std::string>& elements,
-                                           const MySet<std::unique_ptr<CantorSet>>& subsets = {});
+    static CantorSet createCompleteCantorSet(const SimpleSet<std::string>& elements,
+                                           const SimpleSet<std::unique_ptr<CantorSet>>& subsets = {});
     
     /**
      * @brief Создает полное канторово множество из существующего множества
@@ -323,11 +323,11 @@ public:
      * @brief Возвращает множество элементов
      * @return Константная ссылка на множество элементов
      */
-    const MySet<std::string>& getElements() const { return elements; }
+    const SimpleSet<std::string>& getElements() const { return elements; }
     
     /**
      * @brief Возвращает множество подмножеств
      * @return Константная ссылка на множество подмножеств
      */
-    const MySet<std::unique_ptr<CantorSet>>& getSubsets() const { return subsets; }
+    const SimpleSet<std::unique_ptr<CantorSet>>& getSubsets() const { return subsets; }
 };

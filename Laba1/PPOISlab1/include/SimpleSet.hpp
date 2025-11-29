@@ -6,7 +6,7 @@
 #include <string>
 
 template<typename T>
-class MySet {
+class SimpleSet {
 private:
     struct Node {
         T value;
@@ -90,20 +90,20 @@ private:
         return node;
     }
 public:
-    MySet() : root(nullptr), size_(0) {}
+    SimpleSet() : root(nullptr), size_(0) {}
     
-    MySet(const MySet& other) : size_(other.size_) {
+    SimpleSet(const SimpleSet& other) : size_(other.size_) {
         root = copyRecursive(other.root);
     }
     
-    MySet(MySet&& other) noexcept 
+    SimpleSet(SimpleSet&& other) noexcept 
         : root(std::move(other.root)), size_(other.size_) {
         other.size_ = 0;
     }
     
-    ~MySet() = default;
+    ~SimpleSet() = default;
     
-    MySet& operator=(const MySet& other) {
+    SimpleSet& operator=(const SimpleSet& other) {
         if (this != &other) {
             clear();
             root = copyRecursive(other.root);
@@ -112,7 +112,7 @@ public:
         return *this;
     }
     
-    MySet& operator=(MySet&& other) noexcept {
+    SimpleSet& operator=(SimpleSet&& other) noexcept {
         if (this != &other) {
             clear();
             root = std::move(other.root);
@@ -163,7 +163,7 @@ public:
     }
     
     // Операторы сравнения
-    bool operator==(const MySet& other) const {
+    bool operator==(const SimpleSet& other) const {
         if (size_ != other.size_) return false;
         
         std::vector<T> thisElements, otherElements;
@@ -182,7 +182,7 @@ public:
         return thisElements == otherElements;
     }
     
-    bool operator<(const MySet& other) const {
+    bool operator<(const SimpleSet& other) const {
         std::vector<T> thisElements, otherElements;
         
         forEach([&](const T& value) {
@@ -202,22 +202,22 @@ public:
    
 
     // Операции над множествами
-    MySet operator+(const MySet& other) const { // Объединение
-        MySet result = *this;
+    SimpleSet operator+(const SimpleSet& other) const { // Объединение
+        SimpleSet result = *this;
         other.forEach([&](const T& value) {
             result.insert(value);
         });
         return result;}
 
-    MySet& operator+=(const MySet& other) {
+    SimpleSet& operator+=(const SimpleSet& other) {
         other.forEach([this](const T& value) {
             insert(value);
         });
         return *this;
     }
 
-    MySet operator*(const MySet& other) const { // Пересечение
-        MySet result;
+    SimpleSet operator*(const SimpleSet& other) const { // Пересечение
+        SimpleSet result;
         forEach([&](const T& value) {
             if (other.contains(value)) {
                 result.insert(value);
@@ -225,8 +225,8 @@ public:
         });
         return result;}
 
-    MySet& operator*=(const MySet& other) {
-        MySet result;
+    SimpleSet& operator*=(const SimpleSet& other) {
+        SimpleSet result;
         forEach([&](const T& value) {
             if (other.contains(value)) {
                 result.insert(value);
@@ -236,8 +236,8 @@ public:
         return *this;
     }
 
-    MySet operator-(const MySet& other) const { // Разность
-        MySet result;
+    SimpleSet operator-(const SimpleSet& other) const { // Разность
+        SimpleSet result;
         forEach([&](const T& value) {
             if (!other.contains(value)) {
                 result.insert(value);
@@ -245,8 +245,8 @@ public:
         });
         return result;}
 
-    MySet& operator-=(const MySet& other) {
-        MySet result;
+    SimpleSet& operator-=(const SimpleSet& other) {
+        SimpleSet result;
         forEach([&](const T& value) {
             if (!other.contains(value)) {
                 result.insert(value);
@@ -259,7 +259,7 @@ public:
 
 // Специализация для std::unique_ptr<T>
 template<typename T>
-class MySet<std::unique_ptr<T>>  {
+class SimpleSet<std::unique_ptr<T>>  {
 private:
     struct Node {
         std::unique_ptr<T> value;
@@ -340,20 +340,20 @@ private:
         return node;}
     
 public:
-    MySet() : root(nullptr), size_(0) {}
+    SimpleSet() : root(nullptr), size_(0) {}
     
-    MySet(const MySet& other) : size_(other.size_) {
+    SimpleSet(const SimpleSet& other) : size_(other.size_) {
         root = copyRecursive(other.root);
     }
     
-    MySet(MySet&& other) noexcept 
+    SimpleSet(SimpleSet&& other) noexcept 
         : root(std::move(other.root)), size_(other.size_) {
         other.size_ = 0;
     }
     
-    ~MySet() = default;
+    ~SimpleSet() = default;
     
-    MySet& operator=(const MySet& other) {
+    SimpleSet& operator=(const SimpleSet& other) {
         if (this != &other) {
             clear();
             root = copyRecursive(other.root);
@@ -362,7 +362,7 @@ public:
         return *this;
     }
     
-    MySet& operator=(MySet&& other) noexcept {
+    SimpleSet& operator=(SimpleSet&& other) noexcept {
         if (this != &other) {
             clear();
             root = std::move(other.root);
@@ -408,7 +408,7 @@ public:
         inOrderRecursive(root, callback);
     }
     
-    bool operator==(const MySet& other) const {
+    bool operator==(const SimpleSet& other) const {
         if (size_ != other.size_) return false;
         
         // Для сравнения множеств указателей, мы сравниваем сами объекты
@@ -428,7 +428,7 @@ public:
         return thisElements == otherElements;
     }
     
-    bool operator<(const MySet& other) const {
+    bool operator<(const SimpleSet& other) const {
         std::vector<T> thisElements, otherElements;
         
         forEach([&](const std::unique_ptr<T>& value) {
@@ -444,12 +444,12 @@ public:
         
         return thisElements < otherElements;
     }
-    bool operator>(const MySet& other) const{
+    bool operator>(const SimpleSet& other) const{
         return !(*this < other);
     }
     
-    MySet operator+(const MySet& other) const { // Объединение
-        MySet result = *this;
+    SimpleSet operator+(const SimpleSet& other) const { // Объединение
+        SimpleSet result = *this;
         other.forEach([&](const std::unique_ptr<T>& value) {
             if (!result.contains(*value)) {
                 result.insert(std::make_unique<T>(*value));
@@ -458,7 +458,7 @@ public:
         return result;
     }
 
-    MySet& operator+=(const MySet& other) {
+    SimpleSet& operator+=(const SimpleSet& other) {
         other.forEach([this](const std::unique_ptr<T>& value) {
             if (!contains(*value)) {
                 insert(std::make_unique<T>(*value));
@@ -467,8 +467,8 @@ public:
         return *this;
     }
 
-    MySet operator*(const MySet& other) const { // Пересечение
-        MySet result;
+    SimpleSet operator*(const SimpleSet& other) const { // Пересечение
+        SimpleSet result;
         forEach([&](const std::unique_ptr<T>& value) {
             if (other.contains(*value)) {
                 result.insert(std::make_unique<T>(*value));
@@ -477,8 +477,8 @@ public:
         return result;
     }
 
-    MySet& operator*=(const MySet& other) {
-        MySet result;
+    SimpleSet& operator*=(const SimpleSet& other) {
+        SimpleSet result;
         forEach([&](const std::unique_ptr<T>& value) {
             if (other.contains(*value)) {
                 result.insert(std::make_unique<T>(*value));
@@ -488,8 +488,8 @@ public:
         return *this;
     }
 
-    MySet operator-(const MySet& other) const { // Разность
-        MySet result;
+    SimpleSet operator-(const SimpleSet& other) const { // Разность
+        SimpleSet result;
         forEach([&](const std::unique_ptr<T>& value) {
             if (!other.contains(*value)) {
                 result.insert(std::make_unique<T>(*value));
@@ -498,8 +498,8 @@ public:
         return result;
     }
 
-    MySet& operator-=(const MySet& other) {
-        MySet result;
+    SimpleSet& operator-=(const SimpleSet& other) {
+        SimpleSet result;
         forEach([&](const std::unique_ptr<T>& value) {
             if (!other.contains(*value)) {
                 result.insert(std::make_unique<T>(*value));

@@ -269,7 +269,7 @@ SUITE(CantorSetTest) {
         etalon.push_back("5");
         etalon.push_back("6");
 
-        MySet<std::string> SetInstance;
+        SimpleSet<std::string> SetInstance;
         SetInstance.insert("1");
         SetInstance.insert("2");
         SetInstance.insert("3");
@@ -329,13 +329,13 @@ SUITE(CantorSetEdgeCases) {
 }
 SUITE(MySetTest) {
     TEST(DefaultConstructor) {
-        MySet<int> set;
+        SimpleSet<int> set;
         CHECK(set.empty());
         CHECK_EQUAL(0, set.size());
     }
 
     TEST(InsertAndContains) {
-        MySet<int> set;
+        SimpleSet<int> set;
         CHECK(set.insert(10));
         CHECK(set.contains(10));
         CHECK(!set.insert(10)); // Дубликат
@@ -343,7 +343,7 @@ SUITE(MySetTest) {
     }
 
     TEST(Remove) {
-        MySet<int> set;
+        SimpleSet<int> set;
         set.insert(10);
         set.insert(20);
         
@@ -354,17 +354,17 @@ SUITE(MySetTest) {
     }
 
     TEST(Union) {
-        MySet<int> set1;
+        SimpleSet<int> set1;
         set1.insert(1);
         set1.insert(2);
         set1.insert(3);
         
-        MySet<int> set2;
+        SimpleSet<int> set2;
         set2.insert(3);
         set2.insert(4);
         set2.insert(5);
         
-        MySet<int> result = set1 + set2;
+        SimpleSet<int> result = set1 + set2;
         CHECK(result.contains(1));
         CHECK(result.contains(2));
         CHECK(result.contains(3));
@@ -374,17 +374,17 @@ SUITE(MySetTest) {
     }
 
     TEST(Intersection) {
-        MySet<int> set1;
+        SimpleSet<int> set1;
         set1.insert(1);
         set1.insert(2);
         set1.insert(3);
         
-        MySet<int> set2;
+        SimpleSet<int> set2;
         set2.insert(3);
         set2.insert(4);
         set2.insert(5);
         
-        MySet<int> result = set1 * set2;
+        SimpleSet<int> result = set1 * set2;
         CHECK(!result.contains(1));
         CHECK(!result.contains(2));
         CHECK(result.contains(3));
@@ -394,17 +394,17 @@ SUITE(MySetTest) {
     }
 
     TEST(Difference) {
-        MySet<int> set1;
+        SimpleSet<int> set1;
         set1.insert(1);
         set1.insert(2);
         set1.insert(3);
         
-        MySet<int> set2;
+        SimpleSet<int> set2;
         set2.insert(3);
         set2.insert(4);
         set2.insert(5);
         
-        MySet<int> result = set1 - set2;
+        SimpleSet<int> result = set1 - set2;
         CHECK(result.contains(1));
         CHECK(result.contains(2));
         CHECK(!result.contains(3));
@@ -412,17 +412,17 @@ SUITE(MySetTest) {
     }
 
     TEST(Comparison) {
-        MySet<int> set1;
+        SimpleSet<int> set1;
         set1.insert(1);
         set1.insert(2);
         set1.insert(3);
         
-        MySet<int> set2;
+        SimpleSet<int> set2;
         set2.insert(1);
         set2.insert(2);
         set2.insert(3);
         
-        MySet<int> set3;
+        SimpleSet<int> set3;
         set3.insert(4);
         set3.insert(5);
         
@@ -432,7 +432,7 @@ SUITE(MySetTest) {
     }
 
     TEST(ForEach) {
-        MySet<int> set;
+        SimpleSet<int> set;
         set.insert(1);
         set.insert(2);
         set.insert(3);
@@ -449,32 +449,32 @@ SUITE(MySetTest) {
     }
 
     TEST(CopyConstructor) {
-        MySet<int> original;
+        SimpleSet<int> original;
         original.insert(1);
         original.insert(2);
-        MySet<int> copy(original);
+        SimpleSet<int> copy(original);
         CHECK(copy.contains(1));
         CHECK(copy.contains(2));
         CHECK_EQUAL(2, copy.size());
     }
 
     TEST(MoveConstructor) {
-        MySet<int> original;
+        SimpleSet<int> original;
         original.insert(1);
         original.insert(2);
         
-        MySet<int> moved(std::move(original));
+        SimpleSet<int> moved(std::move(original));
         CHECK(moved.contains(1));
         CHECK(moved.contains(2));
         CHECK(original.empty()); // original должен быть пустым после перемещения
     }
 
     TEST(AssignmentOperator) {
-        MySet<int> set1;
+        SimpleSet<int> set1;
         set1.insert(1);
         set1.insert(2);
         
-        MySet<int> set2;
+        SimpleSet<int> set2;
         set2 = set1;
         
         CHECK(set2.contains(1));
@@ -483,7 +483,7 @@ SUITE(MySetTest) {
     }
 
     TEST(Clear) {
-        MySet<int> set;
+        SimpleSet<int> set;
         set.insert(1);
         set.insert(2);
         
@@ -496,7 +496,7 @@ SUITE(MySetTest) {
 
 SUITE(MySetStringTest) {
     TEST(StringOperations) {
-        MySet<std::string> set;
+        SimpleSet<std::string> set;
         CHECK(set.insert("hello"));
         CHECK(set.insert("world"));
         CHECK(!set.insert("hello")); // Дубликат
