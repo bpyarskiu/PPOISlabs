@@ -43,3 +43,33 @@ public:
     explicit ResourceNotFoundException(const std::string& message)
         : std::runtime_error("Resource Not Found: " + message) {}
 };
+
+class DatabaseConnectionException : public std::runtime_error {
+public:
+    explicit DatabaseConnectionException(const std::string& message)
+        : std::runtime_error("Database Connection Error: " + message) {}
+};
+
+class AuthorizationException : public std::runtime_error {
+public:
+    explicit AuthorizationException(const std::string& message)
+        : std::runtime_error("Authorization Error: " + message) {}
+};
+
+class BookingConflictException : public std::runtime_error {
+public:
+    explicit BookingConflictException(const std::string& message)
+        : std::runtime_error("Booking Conflict: " + message) {}
+};
+
+class InvalidDateException : public std::runtime_error {
+public:
+    explicit InvalidDateException(const std::string& message)
+        : std::runtime_error("Invalid Date: " + message) {}
+};
+
+class NetworkCommunicationException : public std::runtime_error {
+public:
+    explicit NetworkCommunicationException(const std::string& message)
+        : std::runtime_error("Network Communication Error: " + message) {}
+};
