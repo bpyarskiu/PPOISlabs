@@ -16,6 +16,9 @@ HumanResources::HumanResources(int id, const string& firstName, const string& la
     if (hrSpecializations.empty()) {
         throw invalid_argument("HR must have at least one specialization");
     }
+    if (recruitedEmployees < 0) {
+        throw invalid_argument("Recruited employees cannot be negative");
+    }
 }
 
 const vector<string>& HumanResources::getHrSpecializations() const { return hrSpecializations; }
@@ -36,7 +39,10 @@ double HumanResources::calculateTotalBonus() const {
 }
 
 void HumanResources::displayInfo() const {
-    Employee::displayEmployeeInfo();
+    display();
+     cout << "Employee ID: " << employeeId << endl;
+    cout << "Position: " << position << endl;
+    cout << "Salary: " << salary << " RUB" << endl;
     cout << "HR Specializations: ";
     for (const auto& specialization : hrSpecializations) {
         cout << specialization << ", ";

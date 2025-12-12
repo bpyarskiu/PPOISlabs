@@ -9,7 +9,7 @@ Company::Company(const string& name, int foundationYear, const Address& headquar
     if (name.empty()) {
         throw invalid_argument("Company name cannot be empty");
     }
-    if (foundationYear < 1900 || foundationYear > 2024) {
+    if (foundationYear < 1880 || foundationYear > 2025) {
         throw invalid_argument("Invalid foundation year");
     }
 }
@@ -23,6 +23,8 @@ const vector<shared_ptr<Client>>& Company::getClients() const { return clients; 
 const vector<shared_ptr<Tour>>& Company::getTours() const { return tours; }
 const vector<shared_ptr<Booking>>& Company::getBookings() const { return bookings; }
 const vector<shared_ptr<Accommodation>>& Company::getAccommodations() const { return accommodations; }
+ const std::vector<std::shared_ptr<Equipment>>& Company::getEquipment() const {return equipment;}
+     const std::vector<std::shared_ptr<Complaint>>& Company::getComplaints() const{return complaints;}
 
 void Company::addEmployee(const shared_ptr<Employee>& employee) {
     if (!employee) {

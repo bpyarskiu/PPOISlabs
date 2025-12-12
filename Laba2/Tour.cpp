@@ -20,6 +20,9 @@ Price Tour::getBasePrice() const { return basePrice; }
 DateRange Tour::getDateRange() const { return dateRange; }
 const vector<shared_ptr<Accommodation>>& Tour::getAccommodations() const { return accommodations; }
 const vector<shared_ptr<Transport>>& Tour::getTransports() const { return transports; }
+std::shared_ptr<Insurance> Tour::getInsurance() const{return insurance;}
+std::shared_ptr<MealPlan> Tour::getMealPlan() const{return mealPlan;}
+const std::vector<std::shared_ptr<Review>>& Tour::getReviews() const{return reviews;}
 
 void Tour::addAccommodation(const shared_ptr<Accommodation>& accommodation) {
     if (!accommodation) {
@@ -35,11 +38,23 @@ void Tour::addTransport(const shared_ptr<Transport>& transport) {
     transports.push_back(transport);
 }
 
+void Tour::addReview(const std::shared_ptr<Review>& review){
+  if (!review) {
+        throw invalid_argument("Cannot add null review");
+    }
+    reviews.push_back(review);
+}
+
 void Tour::setMealPlan(const shared_ptr<MealPlan>& mealPlan) {
     this->mealPlan = mealPlan;
 }
 
-Price Tour::calculateTotalPrice() const {
+void Tour::setInsurance(const std::shared_ptr<Insurance>& insurance){
+    this->insurance=insurance;
+}
+
+Price Tour::
+calculateTotalPrice() const {
     Price total = basePrice;
     int nights = getTourDurationDays();
     
@@ -76,6 +91,34 @@ bool Tour::isActive() const {
     return dateRange.isDateInRange(now);
 }
 
+double Tour::getAverageRating() const{
+    // Если отзывов нет, возвращаем 0.0
+    if (reviews.empty()) {
+        return 0.0;
+    }
+    
+    int totalRating = 0;
+    int validReviewsCount = 0;
+    
+    // Проходим по всем отзывам
+    for (const auto& reviewPtr : reviews) {
+        // Проверяем, что shared_ptr не nullptr
+        if (reviewPtr) {
+            totalRating += reviewPtr->getRating();
+            validReviewsCount++;
+        }
+    }
+    
+    // Если все shared_ptr были nullptr
+    if (validReviewsCount == 0) {
+        return 0.0;
+    }
+    
+    // Вычисляем среднее значение
+    return static_cast<double>(totalRating) / validReviewsCount;
+
+}
+
 void Tour::displayTourInfo() const {
     cout << "=== TOUR INFORMATION ===" << endl;
     cout << "Tour ID: " << tourId << endl;
@@ -86,7 +129,6 @@ void Tour::displayTourInfo() const {
     basePrice.display();
     cout << "Total Price: ";
     calculateTotalPrice().display();
-    cout << "Average Rating: " << getAverageRating() << "/5" << endl;
     cout << "Status: " << (isActive() ? "Active" : "Inactive") << endl;
     cout << "Accommodations: " << accommodations.size() << endl;
     cout << "Transports: " << transports.size() << endl;
@@ -94,6 +136,22 @@ void Tour::displayTourInfo() const {
     cout << "Meal Plan: " << (mealPlan ? mealPlan->getType() : "Not included") << endl;
     cout << "Reviews: " << reviews.size() << endl;
     cout << "========================" << endl;
+}
+
+void Tour::displayReviews() const{
+    if (reviews.empty()) {
+        std::cout << "No reviews available.\n";
+        return;
+    }
+    for (size_t i = 0; i < reviews.size(); ++i) {
+        std::cout << "\n--- Review #" << (i + 1) << " ---\n";
+        if (reviews[i]) {
+            reviews[i]->display();
+        } else {
+            std::cout << "[Invalid review pointer]\n";
+        }
+    }
+    std::cout << "========================\n";
 }
 
 int Tour::getTourDurationDays() const {

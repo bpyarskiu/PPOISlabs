@@ -19,7 +19,7 @@ string Address::getCountry() const { return country; }
 string Address::getPostalCode() const { return postalCode; }
 
 string Address::getFullAddress() const {
-    return street + ", " + city + ", " + country + " " + postalCode;
+    return street + ", " + city + ", " + country + ", " + postalCode;
 }
 
 void Address::display() const {

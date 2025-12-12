@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 
+
 class Manager : public Employee {
 private:
     std::vector<std::string> responsibilities;

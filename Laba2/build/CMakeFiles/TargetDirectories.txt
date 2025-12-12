@@ -1,0 +1,5 @@
+/home/boyarkisu/works/PPOISlabs/Laba2/build/CMakeFiles/TourismCompany.dir
+/home/boyarkisu/works/PPOISlabs/Laba2/build/CMakeFiles/run_tests.dir
+/home/boyarkisu/works/PPOISlabs/Laba2/build/CMakeFiles/test.dir
+/home/boyarkisu/works/PPOISlabs/Laba2/build/CMakeFiles/edit_cache.dir
+/home/boyarkisu/works/PPOISlabs/Laba2/build/CMakeFiles/rebuild_cache.dir

@@ -29,7 +29,7 @@ void NotificationService::sendNotification() {
         throw ResourceNotFoundException("Client not found for notification");
     }
     
-    cout << "Sending notification to " << client->getEmail()<< ":" << endl
+    cout << "Sending notification to " << client->getEmail() << endl
          << "Title: " << getNotificationTitle() << endl
          << "Message: " << message << endl
          << "Notification sent successfully!" << endl;

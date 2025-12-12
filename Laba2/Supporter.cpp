@@ -4,6 +4,26 @@
 
 using namespace std;
 
+std::ostream& operator<<(std::ostream& os, SupportLevel level) {
+    switch(level) {
+        case SupportLevel::BASIC:
+            os << "Basic";
+            break;
+        case SupportLevel::PREMIUM:
+            os << "Premium";
+            break;
+        case SupportLevel::STANDARD:
+             os << "Standard";
+            break;
+        case SupportLevel::URGENT:
+            os << "Urgent";
+            break;
+        default:
+            os << "SupportLevel::Unknown(" << static_cast<int>(level) << ")";
+    }
+    return os;
+}
+
 Supporter::Supporter(int id, const string& firstName, const string& lastName,
                      const ContactInfo& contact, int employeeId, 
                      const string& position, double salary,
@@ -41,7 +61,10 @@ void Supporter::resolveTicket() {
 }
 
 void Supporter::displayInfo() const {
-    Employee::displayEmployeeInfo();
+    display();
+     cout << "Employee ID: " << employeeId << endl;
+    cout << "Position: " << position << endl;
+    cout << "Salary: " << salary << " RUB" << endl;
     cout << "Support Level: " << getSupportLevelString() << endl;
     cout << "Resolved Tickets: " << resolvedTickets << endl;
     cout << "Satisfaction Rating: " << satisfactionRating << "/5" << endl;

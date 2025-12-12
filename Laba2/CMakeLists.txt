@@ -20,9 +20,9 @@ add_library(TourismCompany
     DataRange.cpp Department.cpp Driver.cpp Equipment.cpp Excursion.cpp 
     Flight.cpp Guide.cpp HumanResources.cpp Insurance.cpp
     License.cpp Logger.cpp Manager.cpp MealPlan.cpp NotificationManager.cpp
-    NotificationService.cpp Passport.cpp PaymentSystem.cpp
+    NotificationService.cpp Passport.cpp
     ReportGenerator.cpp Review.cpp Route.cpp ServerStatus.cpp Statistics.cpp Supporter.cpp
-    Tour.cpp Transport.cpp TransportCompany.cpp Validator.cpp VisaService.cpp
+    Tour.cpp Transport.cpp TransportCompany.cpp Validator.cpp VisaService.cpp 
 )
 
 # Исполняемый файл тестов
@@ -32,6 +32,36 @@ add_executable(run_tests
     tests/PersonnelTests.cpp
     tests/UtilityClassesTests.cpp
     tests/CompanyTests.cpp
+    tests/CurrencyTests.cpp
+    tests/RouteTests.cpp
+    tests/BookingTests.cpp
+    tests/TransportTests.cpp
+    tests/LoggerTests.cpp
+    tests/ValidatorTests.cpp
+    tests/PaymentTests.cpp
+    tests/ReportTests.cpp
+    tests/ClientTests.cpp
+    tests/EmployeeTests.cpp
+    tests/DriverTests.cpp
+    tests/PassporLicesnceDiscountTests.cpp
+    tests/SupporterTests.cpp
+    tests/HELPERFILE.cpp
+    tests/ReviewTests.cpp
+    tests/StatisticsTests.cpp
+    tests/GuideTests.cpp
+    tests/ManagerTests.cpp
+    tests/HRTests.cpp
+    tests/ConsultantTests.cpp
+    tests/BusRideTests.cpp
+    tests/BusRouteTests.cpp
+    tests/BusStopTests.cpp
+    tests/NotificationManagerTests.cpp
+    tests/NotificationServiceTests.cpp
+    tests/AccommodationTests.cpp
+    tests/TransportCompanyTests.cpp
+    tests/TourTests.cpp
+    tests/VisaServiceTests.cpp
+    CustomExceptions.hpp
 )
 
 # Связываем тесты с библиотекой и UnitTest++

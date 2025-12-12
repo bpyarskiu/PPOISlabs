@@ -26,9 +26,9 @@ double Coordinates::getLongitude() const {
 
 double Coordinates::calculateDistance(const Coordinates& other) const {
     // Упрощенная формула расчета расстояния
-    double latDiff = latitude - other.latitude;
-    double lonDiff = longitude - other.longitude;
-    return sqrt(latDiff * latDiff + lonDiff * lonDiff) * 111.0; // км за градус
+    double latDiff = (latitude - other.latitude)/2.;
+    double lonDiff = (longitude - other.longitude)/2.;
+    return 2.*6371.* asin(sqrt(sin(latDiff*3.1415/180.) * sin(latDiff*3.1415/180.) + cos(latitude*3.1415/180.) * cos(other.latitude*3.1415/180.) * (sin(lonDiff*3.1415/180.))*(sin(lonDiff*3.1415/180.)))); // км за градус
 }
 
 bool Coordinates::isValid() const {

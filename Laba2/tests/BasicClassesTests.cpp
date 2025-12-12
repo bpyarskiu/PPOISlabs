@@ -75,7 +75,7 @@ SUITE(AddressTests) {
     
     TEST(GetFullAddress) {
         Address address("Main St", "Moscow", "Russia", "101000");
-        std::string expected = "Main St, Moscow, Russia 101000";
+        std::string expected = "Main St, Moscow, Russia, 101000";
         
         CHECK_EQUAL(expected, address.getFullAddress());
     }

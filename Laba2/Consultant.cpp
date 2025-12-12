@@ -42,7 +42,10 @@ double Consultant::calculateCommission() const {
 }
 
 void Consultant::displayInfo() const {
-    Employee::displayEmployeeInfo();
+    display();
+     cout << "Employee ID: " << employeeId << endl;
+    cout << "Position: " << position << endl;
+    cout << "Salary: " << salary << " RUB" << endl;
     cout << "Specialization Areas: ";
     for (const auto& area : specializationAreas) {
         cout << area << ", ";

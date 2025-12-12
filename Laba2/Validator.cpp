@@ -3,17 +3,35 @@
 
 using namespace std;
 
-bool Validator::isValidEmail(const string& email) {
-    // Простая проверка email с помощью regex
-    regex emailRegex(R"(^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$)");
-    return regex_match(email, emailRegex);
-}
+bool Validator::isValidEmail(const std::string& email) {
+        if (email.empty()) return false;
+        
+        // Простая проверка email
+        size_t at_pos = email.find('@');
+        size_t dot_pos = email.find('.', at_pos);
+        
+        return (at_pos != std::string::npos && 
+                dot_pos != std::string::npos &&
+                at_pos > 0 && 
+                dot_pos > at_pos + 1 &&
+                dot_pos < email.length() - 1);
+    }
 
-bool Validator::isValidPhone(const string& phone) {
-    // Проверка телефона: +7(XXX)XXX-XX-XX или 8XXXXXXXXXX или другие форматы
-    regex phoneRegex(R"(^(\+7|8|+375)?[\s\-]?\(?[0-9]{3}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$)");
-    return regex_match(phone, phoneRegex);
-}
+  bool Validator::isValidPhone(const std::string& phone) {
+        if (phone.empty()) return false;
+        
+        // Простая проверка телефона
+        // Должен начинаться с + и иметь достаточно цифр
+        if (phone[0] != '+') return false;
+        if (phone.length() < 10) return false;
+        
+        // Проверяем что остальные символы - цифры
+        for (size_t i = 1; i < phone.length(); ++i) {
+            if (!std::isdigit(phone[i])) return false;
+        }
+        
+        return true;
+    }
 
 bool Validator::isValidName(const string& name) {
     // Имя должно содержать только буквы, пробелы, дефисы и апострофы

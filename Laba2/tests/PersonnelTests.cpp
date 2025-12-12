@@ -3,6 +3,10 @@
 #include "../Employee.hpp"
 #include "../Client.hpp"
 #include "../ContactInfo.hpp"
+#include "HELPERFILE.cpp"
+#include <iostream>
+#include <sstream>
+
 
 SUITE(PersonTests) {
     TEST(ValidPersonCreation) {
@@ -31,28 +35,7 @@ SUITE(PersonTests) {
     }
 }
 
-SUITE(EmployeeTests) {
-    TEST(ValidEmployeeCreation) {
-        ContactInfo contact("employee@company.com", "+79161234567");
-        Employee employee(1, "Alice", "Smith", contact, 1001, "Manager", 50000.0);
-        
-        CHECK_EQUAL(1001, employee.getEmployeeId());
-        CHECK_EQUAL("Manager", employee.getPosition());
-        CHECK_EQUAL(50000.0, employee.getSalary());
-    }
-    
-    TEST(EmployeeInvalidPositionThrowsException) {
-        ContactInfo contact("employee@company.com", "+79161234567");
-        CHECK_THROW(Employee(1, "Alice", "Smith", contact, 1001, "", 50000.0), 
-                   std::invalid_argument);
-    }
-    
-    TEST(EmployeeNegativeSalaryThrowsException) {
-        ContactInfo contact("employee@company.com", "+79161234567");
-        CHECK_THROW(Employee(1, "Alice", "Smith", contact, 1001, "Manager", -1000.0), 
-                   std::invalid_argument);
-    }
-}
+
 
 SUITE(ClientTests) {
     TEST(ValidClientCreation) {
@@ -100,4 +83,19 @@ SUITE(ClientTests) {
         
         CHECK_EQUAL(1000.0, discountedPrice);
     }
+    TEST(PersonTest_Display) {
+    ContactInfo contact("test@email.com", "+375291234567");
+    Person person(1, "John", "Doe", contact);
+    
+    // Перехватываем вывод
+    StdoutRedirect redirect;
+    person.display();
+    std::string output = redirect.getOutput();
+    
+    // Проверяем что все ключевые элементы есть в выводе
+    CHECK(output.find("ID: 1") != std::string::npos);
+    CHECK(output.find("Name: John Doe") != std::string::npos);
+    CHECK(output.find("test@email.com") != std::string::npos);
+    CHECK(output.find("+375291234567") != std::string::npos);
+}
 }

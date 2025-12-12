@@ -18,6 +18,8 @@ Address Accommodation::getAddress() const { return address; }
 AccommodationType Accommodation::getType() const { return type; }
 Price Accommodation::getPricePerNight() const { return pricePerNight; }
 int Accommodation::getCapacity() const { return capacity; }
+Coordinates Accommodation::getCoordinates() const{return coordinates;}
+Rating Accommodation::getRating() const{return rating;}
 
 Price Accommodation::calculateTotalCost(int nights) const {
     if (nights <= 0) {

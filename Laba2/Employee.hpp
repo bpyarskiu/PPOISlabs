@@ -17,5 +17,5 @@ public:
     std::string getPosition() const;
     double getSalary() const;
     
-    void displayEmployeeInfo() const;
+    virtual void displayInfo() const =0;
 };

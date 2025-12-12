@@ -47,7 +47,10 @@ bool Guide::speaksLanguage(const string& language) const {
 }
 
 void Guide::displayInfo() const {
-    Employee::displayEmployeeInfo();
+    display();
+     cout << "Employee ID: " << employeeId << endl;
+    cout << "Position: " << position << endl;
+    cout << "Salary: " << salary << " RUB" << endl;
     cout << "Experience: " << experienceYears << " years" << endl;
     cout << "Rating: " << rating << "/5" << endl;
     cout << "Languages: ";

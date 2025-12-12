@@ -20,10 +20,3 @@ Employee::Employee(int id, const string& firstName, const string& lastName,
 int Employee::getEmployeeId() const { return employeeId; }
 string Employee::getPosition() const { return position; }
 double Employee::getSalary() const { return salary; }
-
-void Employee::displayEmployeeInfo() const {
-    display();
-    cout << "Employee ID: " << employeeId << endl;
-    cout << "Position: " << position << endl;
-    cout << "Salary: " << salary << " RUB" << endl;
-}

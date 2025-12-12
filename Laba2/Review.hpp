@@ -22,6 +22,5 @@ public:
     bool isPositive() const;
     void display() const;
 
-private:
     bool validateRating(int rating) const;
 };

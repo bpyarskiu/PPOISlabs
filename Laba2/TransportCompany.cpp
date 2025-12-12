@@ -38,6 +38,9 @@ void TransportCompany::setName(const string& name) {
     if (name.empty()) {
         throw DataValidationException("Company name cannot be empty");
     }
+    if (name.size()<2) {
+        throw DataValidationException("Company name cannot be less than 2 symbols");
+    }
     this->name = name;
 }
 

@@ -1,5 +1,7 @@
 #include "Manager.hpp"
 #include <iostream>
+#include <algorithm>
+#include <memory>
 
 using namespace std;
 
@@ -25,6 +27,9 @@ void Manager::addResponsibility(const string& responsibility) {
     if (responsibility.empty()) {
         throw invalid_argument("Responsibility cannot be empty");
     }
+     if(find(responsibilities.begin(),responsibilities.end(),responsibility)!= responsibilities.end()){
+        return;
+    }
     responsibilities.push_back(responsibility);
 }
 
@@ -33,7 +38,10 @@ double Manager::calculateTotalCompensation() const {
 }
 
 void Manager::displayInfo() const {
-    Employee::displayEmployeeInfo();
+    display();
+     cout << "Employee ID: " << employeeId << endl;
+    cout << "Position: " << position << endl;
+    cout << "Salary: " << salary << " RUB" << endl;
     cout << "Team Size: " << teamSize << " employees" << endl;
     cout << "Performance Bonus: " << performanceBonus << " RUB" << endl;
     cout << "Total Compensation: " << calculateTotalCompensation() << " RUB" << endl;

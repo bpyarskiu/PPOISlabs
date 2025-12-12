@@ -10,6 +10,8 @@ enum class SupportLevel {
     URGENT
 };
 
+std::ostream& operator<<(std::ostream& os, SupportLevel level);
+
 class Supporter : public Employee {
 private:
     SupportLevel supportLevel;
@@ -33,7 +35,5 @@ public:
     void addSupportedLanguage(const std::string& language);
     void resolveTicket();
     void displayInfo() const;
-
-private:
     std::string getSupportLevelString() const;
 };

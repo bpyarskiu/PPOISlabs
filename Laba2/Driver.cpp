@@ -47,7 +47,10 @@ void Driver::completeTrip() {
 }
 
 void Driver::displayInfo() const {
-    Employee::displayEmployeeInfo();
+    display();
+     cout << "Employee ID: " << employeeId << endl;
+    cout << "Position: " << position << endl;
+    cout << "Salary: " << salary << " RUB" << endl;
     cout << "License Category: " << licenseCategory << endl;
     cout << "Driving Experience: " << drivingExperience << " years" << endl;
     cout << "Safety Rating: " << safetyRating << "/5" << endl;
