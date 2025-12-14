@@ -2,7 +2,7 @@
 #include <string>
 #include "ContactInfo.hpp"
 
-class Person : public ContactInfo {
+class Person  {
 private:
     int id;
     std::string firstName;
@@ -18,6 +18,8 @@ public:
     std::string getFirstName() const;
     std::string getLastName() const;
     ContactInfo getContactInfo() const;
+    std::string getEmail() const;
+    std::string getPhone() const;
     
     // Вспомогательные методы
     std::string getFullName() const;

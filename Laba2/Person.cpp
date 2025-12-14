@@ -27,6 +27,13 @@ string Person::getFirstName() const {
 string Person::getLastName() const { 
     return lastName; 
 }
+string Person::getEmail()const{
+    return contact.getEmail();
+}
+
+string Person::getPhone()const{
+    return contact.getPhone();
+}
 
 ContactInfo Person::getContactInfo() const { 
     return contact; 
