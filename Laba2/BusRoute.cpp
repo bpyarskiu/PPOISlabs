@@ -30,7 +30,6 @@ void BusRoute::displayRouteInfo() const {
 int BusRoute::getTotalStops() const {
     return stops.size();
 }
-
 chrono::minutes BusRoute::getTotalStopTime() const {
     chrono::minutes total(0);
     for (const auto& stop : stops) {
