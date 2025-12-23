@@ -1,0 +1,763 @@
+action_find_connected_components
+<- sc_node_class;
+=> nrel_main_idtf:
+    [действие. поиск компонент связности]
+    (*
+        <- lang_ru;;
+    *);
+<= nrel_inclusion:
+    information_action;;
+
+
+action_calculate_centrality
+<- sc_node_class;
+=> nrel_main_idtf:
+    [действие. поиск центральных компаний]
+    (*
+        <- lang_ru;;
+    *);
+<= nrel_inclusion:
+    information_action;;
+
+
+concept_company
+    <- sc_node_class;;
+
+
+concept_central_company
+<-concept_company;;
+
+manufacturing_company_Siemens
+    <- concept_company;
+    => nrel_main_idtf:
+    [Siemens]
+    (*
+     <- lang_en;;
+    *);;
+
+manufacturing_company_Toyota
+    <- concept_company;
+    => nrel_main_idtf:
+    [Toyota]
+    (*
+     <- lang_en;;
+    *);;
+
+manufacturing_company_General_Electric
+    <- concept_company;
+    => nrel_main_idtf:
+    [General Electric]
+    (*
+     <- lang_en;;
+    *);;
+
+manufacturing_company_Caterpillar
+    <- concept_company;
+    => nrel_main_idtf:
+    [Caterpillar]
+    (*
+     <- lang_en;;
+    *);;
+
+manufacturing_company_Bosch
+    <- concept_company;
+    => nrel_main_idtf:
+    [Bosch]
+    (*
+     <- lang_en;;
+    *);;
+
+manufacturing_company_ThyssenKrupp
+    <- concept_company;
+    => nrel_main_idtf:
+    [ThyssenKrupp]
+    (*
+     <- lang_en;;
+    *);;
+
+manufacturing_company_Airbus
+    <- concept_company;
+    => nrel_main_idtf:
+    [Airbus]
+    (*
+     <- lang_en;;
+    *);;
+
+manufacturing_company_Volkswagen
+    <- concept_company;
+    => nrel_main_idtf:
+    [Volkswagen]
+    (*
+     <- lang_en;;
+    *);;
+
+manufacturing_company_Honeywell
+    <- concept_company;
+    => nrel_main_idtf:
+    [Honeywell]
+    (*
+     <- lang_en;;
+    *);;
+
+manufacturing_company_3M
+    <- concept_company;
+    => nrel_main_idtf:
+    [3M]
+    (*
+     <- lang_en;;
+    *);;
+
+manufacturing_company_Schneider_Electric
+    <- concept_company;
+    => nrel_main_idtf:
+    [Schneider Electric]
+    (*
+     <- lang_en;;
+    *);;
+
+manufacturing_company_ABB
+    <- concept_company;
+    => nrel_main_idtf:
+    [ABB]
+    (*
+     <- lang_en;;
+    *);;
+
+manufacturing_company_Emerson
+    <- concept_company;
+    => nrel_main_idtf:
+    [Emerson]
+    (*
+     <- lang_en;;
+    *);;
+
+manufacturing_company_Lockheed_Martin
+    <- concept_company;
+    => nrel_main_idtf:
+    [Lockheed Martin]
+    (*
+     <- lang_en;;
+    *);;
+
+manufacturing_company_John_Deere
+    <- concept_company;
+    => nrel_main_idtf:
+    [John Deere]
+    (*
+     <- lang_en;;
+    *);;
+
+trading_company_Amazon
+    <- concept_company;
+    => nrel_main_idtf:
+    [Amazon]
+    (*
+     <- lang_en;;
+    *);;
+
+trading_company_Walmart
+    <- concept_company;
+    => nrel_main_idtf:
+    [Walmart]
+    (*
+     <- lang_en;;
+    *);;
+
+trading_company_Alibaba
+    <- concept_company;
+    => nrel_main_idtf:
+    [Alibaba]
+    (*
+     <- lang_en;;
+    *);;
+
+trading_company_Carrefour
+    <- concept_company;
+    => nrel_main_idtf:
+    [Carrefour]
+    (*
+     <- lang_en;;
+    *);;
+
+trading_company_Tesco
+    <- concept_company;
+    => nrel_main_idtf:
+    [Tesco]
+    (*
+     <- lang_en;;
+    *);;
+
+trading_company_Metro_AG
+    <- concept_company;
+    => nrel_main_idtf:
+    [Metro AG]
+    (*
+     <- lang_en;;
+    *);;
+
+trading_company_Target
+    <- concept_company;
+    => nrel_main_idtf:
+    [Target]
+    (*
+     <- lang_en;;
+    *);;
+
+trading_company_Costco
+    <- concept_company;
+    => nrel_main_idtf:
+    [Costco]
+    (*
+     <- lang_en;;
+    *);;
+
+trading_company_IKEA
+    <- concept_company;
+    => nrel_main_idtf:
+    [IKEA]
+    (*
+     <- lang_en;;
+    *);;
+
+trading_company_Best_Buy
+    <- concept_company;
+    => nrel_main_idtf:
+    [Best Buy]
+    (*
+     <- lang_en;;
+    *);;
+
+trading_company_JD_com
+    <- concept_company;
+    => nrel_main_idtf:
+    [JD.com]
+    (*
+     <- lang_en;;
+    *);;
+
+trading_company_eBay
+    <- concept_company;
+    => nrel_main_idtf:
+    [eBay]
+    (*
+     <- lang_en;;
+    *);;
+
+transport_company_UPS
+    <- concept_company;
+    => nrel_main_idtf:
+    [UPS]
+    (*
+     <- lang_en;;
+    *);;
+
+transport_company_DHL
+    <- concept_company;
+    => nrel_main_idtf:
+    [DHL]
+    (*
+     <- lang_en;;
+    *);;
+
+transport_company_Maersk
+    <- concept_company;
+    => nrel_main_idtf:
+    [Maersk]
+    (*
+     <- lang_en;;
+    *);;
+
+transport_company_DB_Schenker
+    <- concept_company;
+    => nrel_main_idtf:
+    [DB Schenker]
+    (*
+     <- lang_en;;
+    *);;
+
+transport_company_COSCO
+    <- concept_company;
+    => nrel_main_idtf:
+    [COSCO]
+    (*
+     <- lang_en;;
+    *);;
+
+transport_company_XPO_Logistics
+    <- concept_company;
+    => nrel_main_idtf:
+    [XPO Logistics]
+    (*
+     <- lang_en;;
+    *);;
+
+transport_company_CMA_CGM
+    <- concept_company;
+    => nrel_main_idtf:
+    [CMA CGM]
+    (*
+     <- lang_en;;
+    *);;
+
+transport_company_Kuehne_Nagel
+    <- concept_company;
+    => nrel_main_idtf:
+    [Kuehne + Nagel]
+    (*
+     <- lang_en;;
+    *);;
+
+building_company_Vinci
+    <- concept_company;
+    => nrel_main_idtf:
+    [Vinci]
+    (*
+     <- lang_en;;
+    *);;
+
+building_company_Bechtel
+    <- concept_company;
+    => nrel_main_idtf:
+    [Bechtel]
+    (*
+     <- lang_en;;
+    *);;
+
+building_company_China_State_Construction
+    <- concept_company;
+    => nrel_main_idtf:
+    [China State Construction]
+    (*
+     <- lang_en;;
+    *);;
+
+building_company_Bouygues
+    <- concept_company;
+    => nrel_main_idtf:
+    [Bouygues]
+    (*
+     <- lang_en;;
+    *);;
+
+building_company_Skanska
+    <- concept_company;
+    => nrel_main_idtf:
+    [Skanska]
+    (*
+     <- lang_en;;
+    *);;
+
+building_company_Hochtief
+    <- concept_company;
+    => nrel_main_idtf:
+    [Hochtief]
+    (*
+     <- lang_en;;
+    *);;
+
+building_company_Fluor
+    <- concept_company;
+    => nrel_main_idtf:
+    [Fluor]
+    (*
+     <- lang_en;;
+    *);;
+
+it_company_Microsoft
+    <- concept_company;
+    => nrel_main_idtf:
+    [Microsoft]
+    (*
+     <- lang_en;;
+    *);;
+
+it_company_Google
+    <- concept_company;
+    => nrel_main_idtf:
+    [Google]
+    (*
+     <- lang_en;;
+    *);;
+
+it_company_IBM
+    <- concept_company;
+    => nrel_main_idtf:
+    [IBM]
+    (*
+     <- lang_en;;
+    *);;
+
+it_company_Oracle
+    <- concept_company;
+    => nrel_main_idtf:
+    [Oracle]
+    (*
+     <- lang_en;;
+    *);;
+
+it_company_SAP
+    <- concept_company;
+    => nrel_main_idtf:
+    [SAP]
+    (*
+     <- lang_en;;
+    *);;
+
+bank_JPMorgan_Chase
+    <- concept_company;
+    => nrel_main_idtf:
+    [JPMorgan Chase]
+    (*
+     <- lang_en;;
+    *);;
+
+bank_HSBC
+    <- concept_company;
+    => nrel_main_idtf:
+    [HSBC]
+    (*
+     <- lang_en;;
+    *);;
+
+bank_Deutsche_Bank
+    <- concept_company;
+    => nrel_main_idtf:
+    [Deutsche Bank]
+    (*
+     <- lang_en;;
+    *);;
+
+
+// Виды договоров
+
+nrel_agreement_Supplies
+    <- sc_node_non_role_relation;
+    => nrel_main_idtf:
+    [Договор поставок*]
+    (*
+     <- lang_ru;;
+    *);
+    => nrel_first_domain: 
+        concept_company;
+    =>nrel_second_domain:
+        concept_company;;
+
+nrel_agreement_Contract
+    <- sc_node_non_role_relation;
+    => nrel_main_idtf:
+    [Договор услуг*]
+    (*
+     <- lang_ru;;
+    *);
+    => nrel_first_domain: 
+        concept_company;
+    =>nrel_second_domain:
+        concept_company;;
+
+nrel_agreement_Credit
+    <- sc_node_non_role_relation;
+    => nrel_main_idtf:
+    [Договор кредитный*]
+    (*
+     <- lang_ru;;
+    *);
+    => nrel_first_domain: 
+        concept_company;
+    =>nrel_second_domain:
+        concept_company;;
+
+// Связи между комапаниями
+
+bank_JPMorgan_Chase
+    -> nrel_agreement_Contract:
+        trading_company_Carrefour;;
+
+trading_company_Carrefour
+    -> nrel_agreement_Supplies:
+        trading_company_JD_com;;
+
+trading_company_JD_com
+    -> nrel_agreement_Supplies:
+        building_company_Hochtief;;
+
+building_company_Hochtief
+    -> nrel_agreement_Supplies:
+        it_company_Oracle;;
+
+it_company_Oracle
+    -> nrel_agreement_Supplies:
+        transport_company_Maersk;;
+
+transport_company_Maersk
+    -> nrel_agreement_Credit:
+        manufacturing_company_ABB;;
+
+manufacturing_company_ABB
+    -> nrel_agreement_Contract:
+        transport_company_CMA_CGM;;
+
+transport_company_CMA_CGM
+    -> nrel_agreement_Credit:
+        trading_company_Metro_AG;;
+
+trading_company_Metro_AG
+    -> nrel_agreement_Supplies:
+        manufacturing_company_Volkswagen;;
+
+manufacturing_company_Volkswagen
+    -> nrel_agreement_Supplies:
+        manufacturing_company_3M;;
+
+manufacturing_company_3M
+    -> nrel_agreement_Credit:
+        it_company_IBM;;
+
+it_company_IBM
+    -> nrel_agreement_Supplies:
+        transport_company_XPO_Logistics;;
+
+transport_company_XPO_Logistics
+    -> nrel_agreement_Supplies:
+        trading_company_Costco;;
+
+trading_company_Costco
+    -> nrel_agreement_Supplies:
+        transport_company_UPS;;
+
+transport_company_UPS
+    -> nrel_agreement_Supplies:
+        trading_company_Walmart;;
+
+trading_company_Walmart
+    -> nrel_agreement_Supplies:
+        manufacturing_company_Bosch;;
+
+manufacturing_company_Bosch
+    -> nrel_agreement_Credit:
+        trading_company_IKEA;;
+
+manufacturing_company_Bosch
+    -> nrel_agreement_Supplies:
+        it_company_IBM;
+        trading_company_Carrefour;;
+
+transport_company_Maersk
+    -> nrel_agreement_Supplies:
+        manufacturing_company_Bosch;;
+
+trading_company_Metro_AG
+    -> nrel_agreement_Credit:
+        it_company_IBM;;
+
+trading_company_IKEA
+    -> nrel_agreement_Credit:
+        trading_company_JD_com;
+        transport_company_UPS;;
+
+manufacturing_company_3M
+    -> nrel_agreement_Supplies:
+        manufacturing_company_ABB;;
+
+trading_company_JD_com
+    -> nrel_agreement_Contract:
+        bank_JPMorgan_Chase;
+        transport_company_XPO_Logistics;;
+
+transport_company_XPO_Logistics
+    -> nrel_agreement_Credit:
+        manufacturing_company_Volkswagen;;
+
+transport_company_CMA_CGM
+    -> nrel_agreement_Supplies:
+        transport_company_Maersk;
+        it_company_Oracle;;
+
+transport_company_UPS
+    -> nrel_agreement_Contract:
+        trading_company_Walmart;
+        trading_company_Carrefour;;
+
+manufacturing_company_Toyota
+    -> nrel_agreement_Contract:
+        building_company_China_State_Construction;;
+
+building_company_China_State_Construction
+    -> nrel_agreement_Credit:
+        manufacturing_company_John_Deere;;
+
+manufacturing_company_John_Deere
+    -> nrel_agreement_Contract:
+        transport_company_COSCO;;
+
+transport_company_COSCO
+    -> nrel_agreement_Contract:
+        transport_company_DB_Schenker;;
+
+transport_company_DB_Schenker
+    -> nrel_agreement_Credit:
+        it_company_SAP;;
+
+it_company_SAP
+    -> nrel_agreement_Credit:
+        manufacturing_company_Emerson;;
+
+manufacturing_company_Emerson
+    -> nrel_agreement_Supplies:
+        trading_company_Tesco;;
+
+trading_company_Tesco
+    -> nrel_agreement_Credit:
+        it_company_Google;;
+
+it_company_Google
+    -> nrel_agreement_Credit:
+        it_company_Microsoft;;
+
+it_company_Microsoft
+    -> nrel_agreement_Supplies:
+        manufacturing_company_Lockheed_Martin;;
+
+manufacturing_company_Lockheed_Martin
+    -> nrel_agreement_Credit:
+        transport_company_DHL;;
+
+manufacturing_company_Toyota
+    -> nrel_agreement_Contract:
+        manufacturing_company_Lockheed_Martin;;
+
+it_company_Google
+    -> nrel_agreement_Credit:
+        building_company_China_State_Construction;
+        transport_company_DHL;;
+
+manufacturing_company_Toyota
+    -> nrel_agreement_Supplies:
+        manufacturing_company_John_Deere;
+        it_company_Microsoft;;
+
+manufacturing_company_Lockheed_Martin
+    -> nrel_agreement_Credit:
+        manufacturing_company_Toyota;
+        it_company_SAP;;
+
+trading_company_Tesco
+    -> nrel_agreement_Credit:
+        it_company_Microsoft;;
+
+manufacturing_company_Emerson
+    -> nrel_agreement_Credit:
+        manufacturing_company_Toyota;
+        manufacturing_company_John_Deere;;
+
+manufacturing_company_Siemens
+    -> nrel_agreement_Contract:
+        building_company_Bechtel;;
+
+building_company_Bechtel
+    -> nrel_agreement_Supplies:
+        trading_company_Amazon;;
+
+trading_company_Amazon
+    -> nrel_agreement_Supplies:
+        building_company_Fluor;;
+
+building_company_Fluor
+    -> nrel_agreement_Contract:
+        building_company_Bouygues;;
+
+building_company_Bouygues
+    -> nrel_agreement_Credit:
+        manufacturing_company_Honeywell;;
+
+manufacturing_company_Honeywell
+    -> nrel_agreement_Supplies:
+        manufacturing_company_Schneider_Electric;;
+
+manufacturing_company_Schneider_Electric
+    -> nrel_agreement_Contract:
+        bank_Deutsche_Bank;;
+
+bank_Deutsche_Bank
+    -> nrel_agreement_Supplies:
+        building_company_Skanska;;
+
+building_company_Skanska
+    -> nrel_agreement_Contract:
+        trading_company_Target;;
+
+trading_company_Target
+    -> nrel_agreement_Supplies:
+        building_company_Vinci;;
+
+manufacturing_company_Siemens
+    -> nrel_agreement_Contract:
+        trading_company_Target;
+        manufacturing_company_Honeywell;;
+
+building_company_Vinci
+    -> nrel_agreement_Contract:
+        manufacturing_company_Schneider_Electric;
+        manufacturing_company_Honeywell;;
+
+building_company_Skanska
+    -> nrel_agreement_Supplies:
+        trading_company_Target;
+        building_company_Bechtel;;
+
+trading_company_Amazon
+    -> nrel_agreement_Supplies:
+        bank_Deutsche_Bank;
+        manufacturing_company_Siemens;;
+
+trading_company_Amazon
+    -> nrel_agreement_Credit:
+        manufacturing_company_Siemens;
+        manufacturing_company_Schneider_Electric;;
+
+transport_company_Kuehne_Nagel
+    -> nrel_agreement_Supplies:
+        trading_company_Best_Buy;;
+
+trading_company_Best_Buy
+    -> nrel_agreement_Supplies:
+        manufacturing_company_General_Electric;;
+
+manufacturing_company_General_Electric
+    -> nrel_agreement_Supplies:
+        manufacturing_company_Airbus;;
+
+manufacturing_company_Airbus
+    -> nrel_agreement_Supplies:
+        bank_HSBC;;
+
+bank_HSBC
+    -> nrel_agreement_Supplies:
+        trading_company_eBay;;
+
+manufacturing_company_Airbus
+    -> nrel_agreement_Contract:
+        bank_HSBC;
+        transport_company_Kuehne_Nagel;;
+
+bank_HSBC
+    -> nrel_agreement_Credit:
+        trading_company_eBay;
+        trading_company_Best_Buy;;
+
+bank_HSBC
+    -> nrel_agreement_Supplies:
+        trading_company_eBay;;
+
+manufacturing_company_ThyssenKrupp
+    -> nrel_agreement_Credit:
+        trading_company_Alibaba;;
+
+trading_company_Alibaba
+    -> nrel_agreement_Contract:
+        manufacturing_company_Caterpillar;;
+
+manufacturing_company_Caterpillar
+    -> nrel_agreement_Supplies:
+        manufacturing_company_ThyssenKrupp;
+        trading_company_Alibaba;;
+
